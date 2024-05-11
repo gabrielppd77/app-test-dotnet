@@ -1,12 +1,21 @@
-﻿namespace FirstApi.Services
+﻿using FirstApi.DataBase.Repositories;
+using FirstApi.Models;
+
+namespace FirstApi.Services
 {
-  public class FirstService
-  {
-    private readonly FirstRepository;
+	public class FirstService
+	{
+		private readonly FirstRepository repository;
 
-    public async Task Create()
-    {
+		public FirstService(FirstRepository repository)
+		{
+			this.repository = repository;
+		}
 
-    }
-  }
+		public async Task Create(FirstModel firstModel)
+		{
+			await repository.Create(firstModel);
+			await repository.SaveChanges();
+		}
+	}
 }
