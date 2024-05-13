@@ -2,9 +2,9 @@
 {
 	public class FirstModel
 	{
-		public FirstModel(Guid id, string name, string password)
+		public FirstModel(string name, string password)
 		{
-			Id = id;
+			Id = Guid.NewGuid();
 			Name = name;
 			Password = password;
 		}

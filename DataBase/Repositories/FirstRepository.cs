@@ -1,4 +1,5 @@
 using FirstApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirstApi.DataBase.Repositories
 {
@@ -19,6 +20,18 @@ namespace FirstApi.DataBase.Repositories
 		public async Task SaveChanges()
 		{
 			await context.SaveChangesAsync();
+		}
+
+		public async Task<bool> AnyNameExists(string name)
+		{
+			return await context.FirstModel
+				.Where(x => x.Name == name)
+				.AnyAsync();
+		}
+
+		internal async Task<List<FirstModel>> GetAll()
+		{
+			return await context.FirstModel.ToListAsync();
 		}
 	}
 }

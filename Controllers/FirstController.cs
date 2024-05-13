@@ -1,4 +1,4 @@
-using FirstApi.Models;
+using FirstApi.DTOs;
 using FirstApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +16,15 @@ namespace FirstApi.Controllers
 		}
 
 		[HttpPost()]
-		public async Task<ActionResult> Create(FirstModel firstModel)
+		public async Task Create(FirstDTO firstModel)
 		{
 			await service.Create(firstModel);
-			return Ok();
+		}
+
+		[HttpGet()]
+		public async Task<List<FirstDTO>> GetAll()
+		{
+			return await service.GetAll();
 		}
 	}
 };
